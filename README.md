@@ -26,7 +26,7 @@ Alliance Auth plugin that lets authorized users take on-demand snapshots of who 
 pip install git+https://github.com/frfrmpukin/aa-discord-voicesnapshot.git
 ```
 
-2. Add and edit the lines below to local.py;
+2. In local.py:
 ```
 INSTALLED_APPS += [
     "aa_discord_voicesnapshot",
@@ -34,4 +34,24 @@ INSTALLED_APPS += [
 
 DISCORD_TOKEN = "your bot token"
 VOICESNAPSHOT_GUILD_ID = 123456789012345678  # your Discord guild ID
+```
+3. In your root urls.py:
+```
+from django.urls import include, path
+
+urlpatterns += [
+    path("voicesnapshot/", include("aa_discord_voicesnapshot.urls")),
+]
+```
+4. Run migrations:
+```
+python manage.py makemigrations aa_discord_voicesnapshot
+python manage.py migrate
+```
+5. Assign permissions to groups via Alliance Auth admin:
+```
+aa_discord_voicesnapshot.take_snapshot
+aa_discord_voicesnapshot.view_snapshot_history
+aa_discord_voicesnapshot.edit_snapshot
+aa_discord_voicesnapshot.delete_snapshot
 ```
