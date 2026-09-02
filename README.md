@@ -49,7 +49,7 @@ python manage.py makemigrations aa_discord_voicesnapshot
 python manage.py migrate
 ```
 5. Assign permissions to groups via Alliance Auth admin:
-_ `aa_discord_voicesnapshot.take_snapshot`
-_ `aa_discord_voicesnapshot.view_snapshot_history`
-_ `aa_discord_voicesnapshot.edit_snapshot`
-_ `aa_discord_voicesnapshot.delete_snapshot`
+ - `aa_discord_voicesnapshot.take_snapshot`
+ - `aa_discord_voicesnapshot.view_snapshot_history`
+ - `aa_discord_voicesnapshot.edit_snapshot`
+ - `aa_discord_voicesnapshot.delete_snapshot`
