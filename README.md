@@ -23,5 +23,4 @@ Alliance Auth plugin that lets authorized users take on-demand snapshots of who 
 1. Install the plugin:
 
 ```bash
-pip install git+https://github.com/YOUR_GITHUB_USERNAME/aa-discord-voicesnapshot.git
-
+pip install git+https://github.com/frfrmpukin/aa-discord-voicesnapshot.git
