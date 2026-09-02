@@ -1,0 +1,40 @@
+<h2>Discord Voice Channel Snapshot</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Select a voice channel:</label>
+    <select name="channel_id">
+        {% for c in channels %}
+            <option value="{{ c.id }}"
+                {% if c.id|stringformat:"s" == selected_channel_id %}selected{% endif %}>
+                {{ c.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Take Snapshot</button>
+</form>
+
+{% if results %}
+<h3>Snapshot Results</h3>
+
+<p><strong>Channel:</strong> {{ selected_channel_name }}</p>
+<p><strong>Timestamp:</strong> {{ timestamp }}</p>
+<p><strong>Taken by:</strong> {{ snapshot_taken_by }}</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+        <th>Username</th>
+        <th>User ID</th>
+    </tr>
+
+    {% for r in results %}
+    <tr>
+        <td>{{ r.username }}</td>
+        <td>{{ r.user_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p><a href="{% url 'aa_discord_voicesnapshot:history' %}">View Snapshot History</a></p>
+{% endif %}
