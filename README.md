@@ -27,10 +27,11 @@ pip install git+https://github.com/frfrmpukin/aa-discord-voicesnapshot.git
 ```
 
 2. Add and edit the lines below to local.py;
-
+```
 INSTALLED_APPS += [
     "aa_discord_voicesnapshot",
 ]
 
 DISCORD_TOKEN = "your bot token"
 VOICESNAPSHOT_GUILD_ID = 123456789012345678  # your Discord guild ID
+```
