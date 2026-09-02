@@ -1,0 +1,36 @@
+<h2>Snapshot Details</h2>
+
+<p><strong>ID:</strong> {{ snapshot.id }}</p>
+<p><strong>Timestamp:</strong> {{ snapshot.timestamp }}</p>
+<p><strong>Channel:</strong> {{ snapshot.channel_name }}</p>
+<p><strong>Taken By:</strong> {{ snapshot.taken_by.username }}</p>
+
+<h3>Occupants</h3>
+
+<table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+        <th>Username</th>
+        <th>User ID</th>
+    </tr>
+
+    {% for o in snapshot.occupants %}
+    <tr>
+        <td>{{ o.username }}</td>
+        <td>{{ o.user_id }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+    <a href="{% url 'aa_discord_voicesnapshot:history' %}">Back to History</a>
+    {% if perms.aa_discord_voicesnapshot.edit_snapshot %}
+        | <a href="{% url 'aa_discord_voicesnapshot:snapshot_edit' snapshot.id %}">Edit Snapshot</a>
+    {% endif %}
+</p>
+
+{% if perms.aa_discord_voicesnapshot.delete_snapshot %}
+<form method="post" action="{% url 'aa_discord_voicesnapshot:snapshot_delete' snapshot.id %}">
+    {% csrf_token %}
+    <button type="submit" style="color:red;">Delete Snapshot</button>
+</form>
+{% endif %}
