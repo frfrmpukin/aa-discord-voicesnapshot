@@ -1,0 +1,47 @@
+<h2>Edit Snapshot</h2>
+
+<p><strong>ID:</strong> {{ snapshot.id }}</p>
+<p><strong>Timestamp:</strong> {{ snapshot.timestamp }}</p>
+<p><strong>Channel:</strong> {{ snapshot.channel_name }}</p>
+
+<h3>Current Occupants</h3>
+
+<table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+        <th>Username</th>
+        <th>User ID</th>
+        <th>Action</th>
+    </tr>
+
+    {% for o in occupants %}
+    <tr>
+        <td>{{ o.username }}</td>
+        <td>{{ o.user_id }}</td>
+        <td>
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="remove">
+                <input type="hidden" name="user_id" value="{{ o.user_id }}">
+                <button type="submit">Remove</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Add Occupant</h3>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="add">
+
+    <label>Username:</label>
+    <input type="text" name="new_username" required>
+
+    <label>User ID:</label>
+    <input type="number" name="new_user_id" required>
+
+    <button type="submit">Add</button>
+</form>
+
+<p><a href="{% url 'aa_discord_voicesnapshot:snapshot_detail' snapshot.id %}">Back to Snapshot</a></p>
