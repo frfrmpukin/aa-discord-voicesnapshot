@@ -1,0 +1,47 @@
+<h2>Snapshot History</h2>
+
+<form method="get">
+    <label>Filter by channel:</label>
+    <input type="text" name="channel" value="{{ channel_filter }}">
+
+    <label>Filter by user:</label>
+    <input type="text" name="user" value="{{ user_filter }}">
+
+    <button type="submit">Apply Filters</button>
+</form>
+
+<p>
+    <a href="{% url 'aa_discord_voicesnapshot:snapshot_export_csv' %}">Export CSV</a>
+</p>
+
+<table border="1" cellpadding="4" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Timestamp</th>
+        <th>Channel</th>
+        <th>Taken By</th>
+        <th>View</th>
+    </tr>
+
+    {% for s in page_obj %}
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.timestamp }}</td>
+        <td>{{ s.channel_name }}</td>
+        <td>{{ s.taken_by.username }}</td>
+        <td><a href="{% url 'aa_discord_voicesnapshot:snapshot_detail' s.id %}">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&channel={{ channel_filter }}&user={{ user_filter }}">Previous</a>
+    {% endif %}
+
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&channel={{ channel_filter }}&user={{ user_filter }}">Next</a>
+    {% endif %}
+</div>
