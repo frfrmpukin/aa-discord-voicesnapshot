@@ -18,6 +18,11 @@ Alliance Auth plugin that lets authorized users take on-demand snapshots of who 
   - `edit_snapshot`
   - `delete_snapshot`
 
+## Requirements
+
+- allianceauth.services.modules.discord
+- aadiscordbot
+
 ## Installation
 
 1. Install the plugin:
@@ -31,9 +36,6 @@ pip install git+https://github.com/frfrmpukin/aa-discord-voicesnapshot.git
 INSTALLED_APPS += [
     "aa_discord_voicesnapshot",
 ]
-
-DISCORD_TOKEN = "your bot token"
-VOICESNAPSHOT_GUILD_ID = 123456789012345678  # your Discord guild ID
 ```
 
 3. Run migrations:
