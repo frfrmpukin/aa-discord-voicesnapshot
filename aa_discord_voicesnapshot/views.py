@@ -13,8 +13,8 @@ from .models import VoiceSnapshot
 
 
 def get_voice_channels():
-    url = f"https://discord.com/api/v10/guilds/{settings.VOICESNAPSHOT_GUILD_ID}/channels"
-    headers = {"Authorization": f"Bot {settings.DISCORD_TOKEN}"}
+    url = f"https://discord.com/api/v10/guilds/{settings.DISCORD_GUILD_ID}/channels"
+    headers = {"Authorization": f"Bot {settings.DISCORD_BOT_TOKEN}"}
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
@@ -42,8 +42,8 @@ def snapshot(request):
         timestamp = timezone.now()
         snapshot_taken_by = request.user
 
-        url = f"https://discord.com/api/v10/guilds/{settings.VOICESNAPSHOT_GUILD_ID}/voice-states"
-        headers = {"Authorization": f"Bot {settings.DISCORD_TOKEN}"}
+        url = f"https://discord.com/api/v10/guilds/{settings.DISCORD_GUILD_ID}/voice-states"
+        headers = {"Authorization": f"Bot {settings.DISCORD_BOT_TOKEN}"}
 
         resp = requests.get(url, headers=headers)
         resp.raise_for_status()
