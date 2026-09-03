@@ -14,3 +14,4 @@ class VoiceSnapshotMenu(MenuItemHook):
            request.user.has_perm("aa_discord_voicesnapshot.view_snapshot_history"):
             return super().render(request)
         return ""
+
