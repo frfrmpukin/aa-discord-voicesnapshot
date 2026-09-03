@@ -3,13 +3,14 @@ from allianceauth.services.hooks import UrlHook, MenuItemHook
 
 
 #
-# URL HOOK  (YOUR AA VERSION — POSITIONAL ARGUMENTS ONLY)
+# URL HOOK  (YOUR AA VERSION — 3 POSITIONAL ARGUMENTS)
 #
 @hooks.register('url_hook')
 def register_urls():
     return UrlHook(
-        'aa_discord_voicesnapshot.urls',
-        'voicesnapshot'
+        'aa_discord_voicesnapshot.urls',   # module
+        'aa_discord_voicesnapshot',        # base_url / app_name
+        'voicesnapshot'                    # prefix
     )
 
 
