@@ -8,9 +8,8 @@ from allianceauth.services.hooks import UrlHook, MenuItemHook
 @hooks.register('url_hook')
 def register_urls():
     return UrlHook(
-        app_name='aa_discord_voicesnapshot',
         urlconf='aa_discord_voicesnapshot.urls',
-        prefix='voicesnapshot/'
+        prefix='voicesnapshot'
     )
 
 
