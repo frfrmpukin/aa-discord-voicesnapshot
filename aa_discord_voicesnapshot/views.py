@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from authservices.discord.models import DiscordUser
+from allianceauth.services.modules.discord.models import DiscordUser
 from .models import VoiceSnapshot
 
 
