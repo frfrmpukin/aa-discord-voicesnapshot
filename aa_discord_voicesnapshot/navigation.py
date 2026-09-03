@@ -3,9 +3,9 @@ from allianceauth.services.hooks import MenuItemHook
 class VoiceSnapshotMenu(MenuItemHook):
     def __init__(self):
         super().__init__(
-            "aa_discord_voicesnapshot:snapshot",   # URL name FIRST
-            "Discord Voice Snapshot",              # Label SECOND
-            "fa fa-microphone"                     # Icon THIRD
+            "Discord Voice Snapshot",              # text (label)
+            "fa fa-microphone",                    # classes (icon)
+            "aa_discord_voicesnapshot:snapshot",   # url_name
         )
 
     def render(self, request):
