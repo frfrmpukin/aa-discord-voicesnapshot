@@ -20,9 +20,9 @@ def register_urls():
 class VoiceSnapshotMenu(MenuItemHook):
     def __init__(self):
         super().__init__(
-            label="Discord Voice Snapshot",
-            url_name="aa_discord_voicesnapshot:snapshot",
-            icon="fa fa-microphone"
+            "aa_discord_voicesnapshot:snapshot",   # URL name FIRST
+            "Discord Voice Snapshot",              # Label SECOND
+            "fa fa-microphone"                     # Icon THIRD
         )
 
     def render(self, request):
