@@ -3,13 +3,13 @@ from allianceauth.services.hooks import UrlHook, MenuItemHook
 
 
 #
-# URL HOOK  (OLD ALLIANCE AUTH API)
+# URL HOOK  (YOUR AA VERSION — POSITIONAL ARGUMENTS ONLY)
 #
 @hooks.register('url_hook')
 def register_urls():
     return UrlHook(
-        module='aa_discord_voicesnapshot.urls',
-        prefix='voicesnapshot'
+        'aa_discord_voicesnapshot.urls',
+        'voicesnapshot'
     )
 
 
@@ -34,4 +34,3 @@ class VoiceSnapshotMenu(MenuItemHook):
 @hooks.register('menu_item_hook')
 def register_menu():
     return VoiceSnapshotMenu()
-
