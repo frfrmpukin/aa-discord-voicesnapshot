@@ -35,21 +35,18 @@ INSTALLED_APPS += [
 DISCORD_TOKEN = "your bot token"
 VOICESNAPSHOT_GUILD_ID = 123456789012345678  # your Discord guild ID
 ```
-3. In your root urls.py:
-```
-from django.urls import include, path
 
-urlpatterns += [
-    path("voicesnapshot/", include("aa_discord_voicesnapshot.urls")),
-]
-```
-4. Run migrations:
+3. Run migrations:
 ```
 python manage.py makemigrations aa_discord_voicesnapshot
 python manage.py migrate
 ```
-5. Assign permissions to groups via Alliance Auth admin:
+4. Assign permissions to groups via Alliance Auth admin:
    - `aa_discord_voicesnapshot.take_snapshot`
    - `aa_discord_voicesnapshot.view_snapshot_history`
    - `aa_discord_voicesnapshot.edit_snapshot`
    - `aa_discord_voicesnapshot.delete_snapshot`
+5. Access the plugin at:
+```
+/voicesnapshot/
+```
