@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="aa-discord-voicesnapshot",
-    version="1.0.1",
+    version="1.0.2",
     packages=find_packages(),
     include_package_data=True,
     package_data={"aa_discord_voicesnapshot": ["templates/aa_discord_voicesnapshot/*.html"]},
