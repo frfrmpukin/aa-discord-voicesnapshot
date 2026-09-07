@@ -8,7 +8,7 @@ from allianceauth.services.hooks import MenuItemHook, UrlHook
 def register_urls():
     return UrlHook(
         urls='aa_discord_voicesnapshot.urls',
-        namespace='aa_discord_voicesnapshot',
+        namespace='aa_voicesnapshot',
         base_url=r'^voicesnapshot/'
     )
 
@@ -20,7 +20,7 @@ class VoiceSnapshotMenu(MenuItemHook):
         super().__init__(
             "Discord Voice Snapshot",
             "fa fa-microphone",
-            "voicesnapshot:snapshot",       # FIXED namespace
+            "aa_voicesnapshot:snapshot", 
         )
 
     def render(self, request):
