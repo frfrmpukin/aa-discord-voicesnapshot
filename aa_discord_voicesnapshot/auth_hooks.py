@@ -3,17 +3,6 @@ from allianceauth.services.hooks import MenuItemHook
 from allianceauth.hooks import UrlHook
 
 #
-# URL HOOK
-#
-@hooks.register('url_hook')
-def register_urls():
-    return UrlHook(
-        'aa_discord_voicesnapshot.urls',   # module
-        'aa_discord_voicesnapshot',        # app_name
-        'voicesnapshot'                    # prefix
-    )
-
-#
 # MENU HOOK
 #
 class VoiceSnapshotMenu(MenuItemHook):
