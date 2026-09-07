@@ -1,2 +1,1 @@
-default_app_config = "aa_discord_voicesnapshot.apps.AADiscordVoiceSnapshotConfig"
-
+default_app_config = "aa_discord_voicesnapshot.apps.AaDiscordVoiceSnapshotConfig"
