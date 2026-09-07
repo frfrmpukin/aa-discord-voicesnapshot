@@ -11,14 +11,6 @@ class VoiceSnapshot(models.Model):
     channel_name = models.CharField(max_length=255)
     occupants = JSONField()  # list of {username, user_id}
 
-class VoiceState(models.Model):
-    user_id = models.BigIntegerField(unique=True)
-    channel_id = models.BigIntegerField(null=True, blank=True)
-    last_update = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.user_id} in {self.channel_id}"
-    
     class Meta:
         permissions = [
             ("take_snapshot", "Can take Discord voice snapshots"),
@@ -29,3 +21,12 @@ class VoiceState(models.Model):
 
     def __str__(self):
         return f"Snapshot {self.id} at {self.timestamp}"
+
+
+class VoiceState(models.Model):
+    user_id = models.BigIntegerField(unique=True)
+    channel_id = models.BigIntegerField(null=True, blank=True)
+    last_update = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user_id} in {self.channel_id}"
