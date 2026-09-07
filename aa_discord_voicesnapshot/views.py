@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from allianceauth.services.modules.discord.models import DiscordUser
-from .models import VoiceSnapshot
+from .models import VoiceSnapshot, VoiceState
 
 
 def get_voice_channels():
@@ -43,15 +43,14 @@ def snapshot(request):
         timestamp = timezone.now()
         snapshot_taken_by = request.user
 
-        # Discord REST API does NOT expose voice states.
-        # Avoid crashing by using an empty list for now.
-        raw_occupants = []
+        # Read live voice states from database (populated by gateway listener)
+        raw_occupants = VoiceState.objects.filter(channel_id=int(selected_channel_id))
 
         results = []
         for o in raw_occupants:
-            du = DiscordUser.objects.filter(uid=o["user_id"]).first()
+            du = DiscordUser.objects.filter(uid=o.user_id).first()
             results.append({
-                "user_id": o["user_id"],
+                "user_id": o.user_id,
                 "username": du.user.username if du else "Unknown",
             })
 
