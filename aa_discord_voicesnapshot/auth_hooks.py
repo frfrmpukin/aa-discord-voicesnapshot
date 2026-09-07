@@ -1,4 +1,4 @@
-import hooks
+from allianceauth import hooks
 from allianceauth.services.hooks import MenuItemHook
 from allianceauth.urls import UrlHook
 
