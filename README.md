@@ -22,6 +22,7 @@ Alliance Auth plugin that lets authorized users take on-demand snapshots of who 
 
 - allianceauth.services.modules.discord
 - aadiscordbot
+- websocket-client
 
 ## Installation
 
