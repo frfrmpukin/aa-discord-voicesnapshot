@@ -6,10 +6,10 @@ class AaDiscordVoiceSnapshotConfig(AppConfig):
     name = 'aa_discord_voicesnapshot'
 
     def ready(self):
-        # Import the global Alliance Auth URL list
+        # Import Alliance Auth's global URL list
         from allianceauth.urls import urlpatterns
 
-        # Inject this plugin's URLs into AA's main URL tree
+        # Register this plugin's URLs under /voicesnapshot/
         urlpatterns += [
             path('voicesnapshot/', include('aa_discord_voicesnapshot.urls')),
         ]
