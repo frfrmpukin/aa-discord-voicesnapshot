@@ -20,6 +20,7 @@ def get_voice_channels():
     resp.raise_for_status()
     data = resp.json()
 
+    # Discord channel type 2 = voice channel
     return [c for c in data if c.get("type") == 2]
 
 
@@ -42,18 +43,11 @@ def snapshot(request):
         timestamp = timezone.now()
         snapshot_taken_by = request.user
 
-        url = f"https://discord.com/api/v10/guilds/{settings.DISCORD_GUILD_ID}/voice-states"
-        headers = {"Authorization": f"Bot {settings.DISCORD_BOT_TOKEN}"}
+        # Discord REST API does NOT expose voice states.
+        # Avoid crashing by using an empty list for now.
+        raw_occupants = []
 
-        resp = requests.get(url, headers=headers)
-        resp.raise_for_status()
-        data = resp.json()
-
-        raw_occupants = [
-            vs for vs in data
-            if vs.get("channel_id") == selected_channel_id
-        ]
-
+        results = []
         for o in raw_occupants:
             du = DiscordUser.objects.filter(uid=o["user_id"]).first()
             results.append({
