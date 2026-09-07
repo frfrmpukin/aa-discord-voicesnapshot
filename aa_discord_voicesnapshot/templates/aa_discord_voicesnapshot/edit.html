@@ -1,47 +1,66 @@
-<h2>Edit Snapshot</h2>
+{% extends "allianceauth/base.html" %}
+{% load static %}
+{% block content %}
 
-<p><strong>ID:</strong> {{ snapshot.id }}</p>
-<p><strong>Timestamp:</strong> {{ snapshot.timestamp }}</p>
-<p><strong>Channel:</strong> {{ snapshot.channel_name }}</p>
+<h2 class="page-header">Edit Snapshot</h2>
 
-<h3>Current Occupants</h3>
+<div class="card mb-4">
+    <div class="card-body">
+        <p><strong>ID:</strong> {{ snapshot.id }}</p>
+        <p><strong>Timestamp:</strong> {{ snapshot.timestamp }}</p>
+        <p><strong>Channel:</strong> {{ snapshot.channel_name }}</p>
 
-<table border="1" cellpadding="4" cellspacing="0">
-    <tr>
-        <th>Username</th>
-        <th>User ID</th>
-        <th>Action</th>
-    </tr>
+        <h3 class="mt-4">Current Occupants</h3>
 
-    {% for o in occupants %}
-    <tr>
-        <td>{{ o.username }}</td>
-        <td>{{ o.user_id }}</td>
-        <td>
-            <form method="post" style="display:inline;">
-                {% csrf_token %}
-                <input type="hidden" name="action" value="remove">
-                <input type="hidden" name="user_id" value="{{ o.user_id }}">
-                <button type="submit">Remove</button>
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>User ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in occupants %}
+                <tr>
+                    <td>{{ o.username }}</td>
+                    <td>{{ o.user_id }}</td>
+                    <td>
+                        <form method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="user_id" value="{{ o.user_id }}">
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-<h3>Add Occupant</h3>
+        <h3 class="mt-4">Add Occupant</h3>
 
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="action" value="add">
+        <form method="post" class="form">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add">
 
-    <label>Username:</label>
-    <input type="text" name="new_username" required>
+            <div class="mb-3">
+                <label class="form-label">Username:</label>
+                <input type="text" name="new_username" required class="form-control">
+            </div>
 
-    <label>User ID:</label>
-    <input type="number" name="new_user_id" required>
+            <div class="mb-3">
+                <label class="form-label">User ID:</label>
+                <input type="number" name="new_user_id" required class="form-control">
+            </div>
 
-    <button type="submit">Add</button>
-</form>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
 
-<p><a href="{% url 'aa_discord_voicesnapshot:snapshot_detail' snapshot.id %}">Back to Snapshot</a></p>
+        <a href="{% url 'aa_discord_voicesnapshot:snapshot_detail' snapshot.id %}" class="btn btn-secondary mt-3">
+            Back to Snapshot
+        </a>
+    </div>
+</div>
+
+{% endblock %}
