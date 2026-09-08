@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="aa-discord-voicesnapshot",
-    version="1.0.9",
+    version="1.0.10",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -11,8 +11,8 @@ setup(
     ],
     description="""Alliance Auth plugin to snapshot Discord voice channel occupants
 
-Changes in 1.0.9:
-- Simplified the initialization of the VoiceGatewayClient.
+Changes in 1.0.10:
+- Connect start_gateway function to post_migrate signal to initiate VoiceGatewayClient after migrations.
 """,
     author="FrFrmPukin",
     url="https://github.com/frfrmpukin/aa-discord-voicesnapshot",
