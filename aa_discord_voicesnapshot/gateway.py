@@ -35,14 +35,17 @@ class VoiceGatewayClient(threading.Thread):
         self.ws = websocket.WebSocket()
         self.ws.connect(GATEWAY_URL)
 
+        # Receive HELLO packet
         hello = json.loads(self.ws.recv())
         self.heartbeat_interval = hello["d"]["heartbeat_interval"] / 1000
 
+        # IDENTIFY packet (Discord Gateway v10 compliant)
         identify = {
             "op": 2,
             "d": {
                 "token": settings.DISCORD_BOT_TOKEN,
                 "intents": 1 << 2,  # GUILD_VOICE_STATES
+                "capabilities": 4096,  # REQUIRED for voice state subscriptions
                 "properties": {
                     "$os": "linux",
                     "$browser": "AA-VoiceSnapshot",
@@ -52,6 +55,8 @@ class VoiceGatewayClient(threading.Thread):
         }
 
         self.ws.send(json.dumps(identify))
+
+        # Start heartbeat thread
         threading.Thread(target=self.heartbeat, daemon=True).start()
 
     def heartbeat(self):
