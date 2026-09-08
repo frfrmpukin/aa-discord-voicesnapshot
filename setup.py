@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="aa-discord-voicesnapshot",
-    version="1.0.5",
+    version="1.0.6",
     packages=find_packages(),
     include_package_data=True,
     package_data={
@@ -18,7 +18,7 @@ setup(
     description="""Alliance Auth plugin to snapshot Discord voice channel occupants
 
 Changes in 1.0.6:
-- Fixed an error in ___init___.py
+- Fixed a connection error in gateway.py
 """,
     author="FrFrmPukin",
     url="https://github.com/frfrmpukin/aa-discord-voicesnapshot",
