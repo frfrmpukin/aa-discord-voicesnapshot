@@ -36,7 +36,14 @@ pip install git+https://github.com/frfrmpukin/aa-discord-voicesnapshot.git
 ```
 INSTALLED_APPS += [
     "aa_discord_voicesnapshot",
+] 
+
+AND
+# Create or Add to
+PLUGINS += [
+    "aa_discord_voicesnapshot",
 ]
+
 ```
 
 3. Run migrations:
