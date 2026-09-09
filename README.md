@@ -50,11 +50,16 @@ PLUGINS += [
 ```
 python manage.py migrate
 ```
-4. Either create the runner file or download from the repo and upload to here:
+4. Create the runner file in your AA project directory:
+
+This file is NOT installed automatically by pip. You must either:
+- create it manually, or
+- download voicesnapshot_runner.py from this GitHub repo.
+- place it here:
 ```
-/home/allianceserver/myauth/voicesnapshot_runner.py
+    /home/allianceserver/myauth/voicesnapshot_runner.py
 ```
-- File contents for voicesnapshot_runner.py
+- file contents for voicesnapshot_runner.py
 ```
 from aa_discord_voicesnapshot.gateway import VoiceGatewayClient
 
@@ -87,6 +92,13 @@ priority=999
 ```
 supervisorctl reread
 supervisorctl update
+```
+```
+# Restart only the voicesnapshot program
+supervisorctl restart voicesnapshot
+```
+```
+# Or restart the entire myauth group
 supervisorctl restart myauth:
 ```
 
@@ -104,6 +116,8 @@ supervisorctl restart myauth:
 ## Important
 The Discord Gateway does not run inside Django or gunicorn.
 It must be started by Supervisor using the runner script above.
+- Note: The runner file is kept outside the plugin package because Alliance Auth
+Supervisor services must run from the project directory, not from site-packages.
 
 ## Troubleshooting
 Common Issue
