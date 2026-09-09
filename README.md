@@ -73,13 +73,13 @@ if __name__ == "__main__":
   - `You will add this block at the bottom, BEFORE the [group:myauth] line:`
 ```
 [program:voicesnapshot]
-command=/home/allianceserver/venv/auth/bin/python /home/allianceserver/myauth/voicesnapshot_runner.py
-directory=/home/allianceserver/myauth
-user=allianceserver
+command=%(ENV_AA_VENV_DIRECTORY)s/bin/python %(ENV_AA_PROJECT_DIRECTORY)s/voicesnapshot_runner.py
+directory=%(ENV_AA_PROJECT_DIRECTORY)s
+user=%(ENV_AA_USER)s
 autostart=true
 autorestart=true
-stdout_logfile=/home/allianceserver/myauth/log/voicesnapshot.out.log
-stderr_logfile=/home/allianceserver/myauth/log/voicesnapshot.err.log
+stdout_logfile=%(ENV_AA_PROJECT_DIRECTORY)s/log/voicesnapshot.out.log
+stderr_logfile=%(ENV_AA_PROJECT_DIRECTORY)s/log/voicesnapshot.err.log
 priority=998
 ```
   - `Then update the group:`
