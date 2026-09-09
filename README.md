@@ -50,11 +50,19 @@ PLUGINS += [
 ```
 python manage.py migrate
 ```
-4. Assign permissions to groups via Alliance Auth admin:
-   - `aa_discord_voicesnapshot.take_snapshot`
-   - `aa_discord_voicesnapshot.view_snapshot_history`
-   - `aa_discord_voicesnapshot.edit_snapshot`
-   - `aa_discord_voicesnapshot.delete_snapshot`
+4. Either create the runner file or download from the repo and upload to here:
+```
+/home/allianceserver/myauth/voicesnapshot_runner.py
+```
+- File contents for voicesnapshot_runner.py
+```
+from aa_discord_voicesnapshot.gateway import VoiceGatewayClient
+
+if __name__ == "__main__":
+    client = VoiceGatewayClient()
+    client.start()
+    client.join()
+```
   
 5. Edit myauth.conf or supervisor.conf
   - `You will add this block at the bottom, BEFORE the [group:myauth] line:`
@@ -81,10 +89,18 @@ supervisorctl reread
 supervisorctl update
 supervisorctl restart myauth:
 ```
-6. Access the plugin at:
+
+6. Assign permissions to groups via Alliance Auth admin:
+   - `aa_discord_voicesnapshot.take_snapshot`
+   - `aa_discord_voicesnapshot.view_snapshot_history`
+   - `aa_discord_voicesnapshot.edit_snapshot`
+   - `aa_discord_voicesnapshot.delete_snapshot`
+
+7. Access the plugin at:
 ```
 /voicesnapshot/
 ```
+
 ## Important
 The Discord Gateway does not run inside Django or gunicorn.
 It must be started by Supervisor using the runner script above.
