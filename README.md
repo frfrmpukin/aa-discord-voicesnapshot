@@ -56,7 +56,28 @@ python manage.py migrate
    - `aa_discord_voicesnapshot.view_snapshot_history`
    - `aa_discord_voicesnapshot.edit_snapshot`
    - `aa_discord_voicesnapshot.delete_snapshot`
-5. Access the plugin at:
+  
+5. Edit myauth.conf or supervisor.conf
+  - `You will add this block at the bottom, BEFORE the [group:myauth] line:`
+```
+[program:voicesnapshot]
+command=/home/allianceserver/venv/auth/bin/python /home/allianceserver/myauth/voicesnapshot_runner.py
+directory=/home/allianceserver/myauth
+user=allianceserver
+autostart=true
+autorestart=true
+stdout_logfile=/home/allianceserver/myauth/log/voicesnapshot.out.log
+stderr_logfile=/home/allianceserver/myauth/log/voicesnapshot.err.log
+priority=998
+```
+  - `Then update the group:`
+```
+[group:myauth]
+programs=beat,worker,worker_services,gunicorn,voicesnapshot
+priority=999
+```
+
+6. Access the plugin at:
 ```
 /voicesnapshot/
 ```
