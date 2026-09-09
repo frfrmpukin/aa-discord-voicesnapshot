@@ -5,6 +5,10 @@ include aa_discord_voicesnapshot/models.py
 include aa_discord_voicesnapshot/auth_hooks.py
 include aa_discord_voicesnapshot/urls.py
 include aa_discord_voicesnapshot/views.py
+include README.md
+include LICENSE
+include voicesnapshot_runner.py
+recursive-include aa_discord_voicesnapshot *
 
 recursive-include aa_discord_voicesnapshot/templates *
 recursive-include aa_discord_voicesnapshot/migrations *
