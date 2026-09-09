@@ -48,7 +48,6 @@ PLUGINS += [
 
 3. Run migrations:
 ```
-python manage.py makemigrations aa_discord_voicesnapshot
 python manage.py migrate
 ```
 4. Assign permissions to groups via Alliance Auth admin:
@@ -76,8 +75,27 @@ priority=998
 programs=beat,worker,worker_services,gunicorn,voicesnapshot
 priority=999
 ```
-
+- `Update supervisor and restart myauth`
+```
+supervisorctl reread
+supervisorctl update
+supervisorctl restart myauth:
+```
 6. Access the plugin at:
 ```
 /voicesnapshot/
+```
+## Important
+The Discord Gateway does not run inside Django or gunicorn.
+It must be started by Supervisor using the runner script above.
+
+## Troubleshooting
+Common Issue
+- voicesnapshot: ERROR (spawn error)  
+  - Supervisor cannot find the runner file.
+
+Fix
+- Make sure the below exists.
+```
+/home/allianceserver/myauth/voicesnapshot_runner.py
 ```
