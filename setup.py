@@ -24,4 +24,3 @@ gateway: defer Django model imports and resolve token at runtime
     author="FrFrmPukin",
     url="https://github.com/frfrmpukin/aa-discord-voicesnapshot",
 )
-
