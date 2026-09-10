@@ -2,8 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="aa-discord-voicesnapshot",
-    version="1.0.12",
-    packages=find_packages(),
+    version="1.0.13 packages=find_packages(),
     include_package_data=True,
     install_requires=[
         "requests",
@@ -11,9 +10,14 @@ setup(
     ],
     description="""Alliance Auth plugin to snapshot Discord voice channel occupants
 
-Changes in 1.0.12:
-- Edited README.md with more and better instructions.
-- Made voicesnapshot_runner.py availabe for download and directions on where to place.
+Changes in 1.0.13:
+gateway: defer Django model imports and resolve token at runtime
+
+- Defer importing aa_discord_voicesnapshot.models until runtime to allow
+  importing the package in non-Django contexts (tests, debug harness).
+- Resolve Discord token from DISCORD_TOKEN env var or settings.DISCORD_BOT_TOKEN.
+- Allow explicit token injection via VoiceGatewayClient(token=...).
+- Add minimal logging for token prefix and guild id.
 
 """,
     author="FrFrmPukin",
